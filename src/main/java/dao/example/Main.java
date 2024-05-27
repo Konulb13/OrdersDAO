@@ -1,11 +1,8 @@
 package dao.example;
-
-import com.mysql.cj.xdevapi.Client;
 import org.example.Clients;
+import org.example.Orders;
 import org.example.ConnectionFactory;
 import org.example.Items;
-import org.example.Orders;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,13 +21,13 @@ public class Main {
                 throw new RuntimeException(e);
             }
             ClientDAOImpl dao = new ClientDAOImpl(conn,"Clients");
-            dao.createTable(Client.class);
+            dao.createTable(Clients.class);
             Clients c = new Clients("Tom",27);
             dao.add(c);
-            List<Client> clients = dao.getAll(Clients.class);
-            for (Client client : clients) {
+            List<Clients> clients = dao.getAll(Clients.class);
+            for (Clients client : clients) {
                 System.out.println(client);
-//                clients.get(0).setAge(28);
+                clients.get(0).setAge(28);
                 dao.update(clients.get(0));
                 dao.delete(clients.get(0));
             }
